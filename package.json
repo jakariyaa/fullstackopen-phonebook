@@ -1,7 +1,7 @@
 {
-  "name": "phonebook-backend",
+  "name": "fullstack-phonebook",
   "version": "1.0.0",
-  "description": "Fullstackopen Part 4",
+  "description": "Fullstackopen Part 3",
   "license": "MIT",
   "author": "Jakariya Abbas",
   "type": "commonjs",
