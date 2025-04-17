@@ -40,11 +40,6 @@ app.get('/api/persons', (request, response, next) => {
 
 app.post('/api/persons', (request, response, next) => {
   const body = request.body
-  if (!body || !body.name || !body.number) {
-    return response.status(400).json({
-      error: 'Bad Request. Missing Information.'
-    })
-  }
 
   Person.findOne({ name: body.name }).then(found => {
     if (found) {
@@ -122,6 +117,8 @@ const errorHandler = (error, request, response, next) => {
     return response.status(400).json({
       error: 'Invalid ID Format'
     })
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: `Bad request. ${error.message}` })
   }
 
   next(error)
