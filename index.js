@@ -20,11 +20,11 @@ app.get('/info', (request, response, next) => {
   Person.countDocuments({}).then(result => {
     response.send(
       `<div>Phonebook has info for ${result} people</div>` +
-      `</br>` +
+      '</br>' +
       `<div>${now}</div>`
     )
   }).catch(error => {
-    console.log(error);
+    console.log(error)
     next(error)
   })
 })
@@ -33,7 +33,7 @@ app.get('/api/persons', (request, response, next) => {
   Person.find({}).then(person => {
     response.json(person)
   }).catch(error => {
-    console.log(error);
+    console.log(error)
     next(error)
   })
 })
@@ -56,12 +56,12 @@ app.post('/api/persons', (request, response, next) => {
       person.save().then(savedPerson => {
         response.status(201).json(savedPerson)
       }).catch(error => {
-        console.log(error);
+        console.log(error)
         next(error)
       })
     }
   }).catch(error => {
-    console.log(error);
+    console.log(error)
     next(error)
   })
 })
@@ -71,7 +71,7 @@ app.get('/api/persons/:id', (request, response, next) => {
   Person.findById(id).then(person => {
     person ? response.json(person) : response.status(404).end()
   }).catch(error => {
-    console.log(error);
+    console.log(error)
     next(error)
   })
 })
@@ -86,21 +86,21 @@ app.put('/api/persons/:id', (request, response, next) => {
     person.save().then(updatedPerson => {
       response.json(updatedPerson)
     }).catch(error => {
-      console.log(error);
+      console.log(error)
       next(error)
     })
   }).catch(error => {
-    console.log(error);
+    console.log(error)
     next(error)
   })
 })
 
 app.delete('/api/persons/:id', (request, response, next) => {
   const id = request.params.id
-  Person.findByIdAndDelete(id).then(result => {
+  Person.findByIdAndDelete(id).then(() => {
     response.status(204).end()
   }).catch(error => {
-    console.log(error);
+    console.log(error)
     next(error)
   })
 })
@@ -128,5 +128,5 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  console.log("Server running at:", PORT)
+  console.log('Server running at:', PORT)
 })
